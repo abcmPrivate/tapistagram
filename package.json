@@ -1,0 +1,26 @@
+{
+  "name": "tapioca",
+  "version": "1.0.0",
+  "description": "My transcendent Nuxt.js project",
+  "author": "ebi",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.8.0",
+    "nuxt": "^2.10.2"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^1.1.2",
+    "@nuxtjs/eslint-module": "^1.1.0",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "@nuxtjs/vuetify": "^1.9.0",
+    "babel-eslint": "^10.0.3",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0"
+  }
+}
