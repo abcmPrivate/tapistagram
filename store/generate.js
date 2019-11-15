@@ -5,13 +5,13 @@ import nanoid from 'nanoid'
 const db = firebase.firestore()
 const generated = db.collection('generated')
 export const state = () => ({
-    ramen: ''
+    ramen: '',
+    generatedImageUrl: ''
 })
 
 export const mutations = {
-    addRamen (state, payload) {
-        state.ramen = 'ra---'
-        console.log(state.ramen)
+    changeGeneratedImageUrl ({ state }, imageUrl) {
+        state.generatedImageUrl = imageUrl
     }
 }
 
@@ -48,5 +48,24 @@ export const actions = {
         await generated.doc(id).set({
             imageUrl: imageUrl
         })
+    },
+
+    async getImageUrl ({ state, commit, dispatch}, payload) {
+        let imageUrl
+        const id = payload.id
+        const ref = await generated.doc(id).get()
+        if(ref.exists) {
+            imageUrl = await ref.data().imageUrl
+        } else {
+            console.log('URLないわ')
+            imageUrl = ''
+        }
+        commit('changeGeneratedImageUrl', imageUrl)
+    }
+}
+
+export const getters = {
+    getGeneratedImageUrl (state ) {
+        return state.generatedImageUrl
     }
 }

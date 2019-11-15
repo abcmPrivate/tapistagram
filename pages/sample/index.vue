@@ -20,8 +20,6 @@
 
 <script>
 import firebase from '@/plugins/firebase'
-import canvg from 'canvg'
-import nanoid from 'nanoid'
 
 export default {
   components: {
