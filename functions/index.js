@@ -1,11 +1,21 @@
+import firebase from '@/plugins/firebase';
+const db = firebase.firestore()
+const generated = db.collection('generated')
 const functions = require('firebase-functions');
 
-exports.bigben = functions.https.onRequest((req, res) => {
+const getImageUrl = async (id) => {
+  const snapshot = await generated.doc(id).get()
+  if (!snapshot.exists) return ''
+  return snapshot.data().imageUrl
+} 
+
+exports.bigben = functions.https.onRequest(async (req, res) => {
+  const id = req.params.id
+  const IMAGE = getImageUrl(id)
 
   const SITEURL = "〇〇〇〇〇"
   const TITLE = "〇〇〇〇〇"
   const DESCRIPTION = "〇〇〇〇〇"
-  const IMAGE = `https://firebasestorage.googleapis.com/v0/b/tapistagram.appspot.com/o/test.jpg?alt=media&token=6350d7f5-7897-461a-b40a-32128d576c37`
 
   res.status(200).send(`<!doctype html>
     <head>
