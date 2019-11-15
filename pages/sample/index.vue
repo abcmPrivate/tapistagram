@@ -14,12 +14,14 @@
       <input v-model="text1" type="text" style="width:100%; margin-bottom:10px">
       <button @click="create">つくる</button>
     </div>
+    <img src="https://firebasestorage.googleapis.com/v0/b/tapistagram.appspot.com/o/generate%2Ff_J9JrHxPcurEXBAU_72w.png?alt=media&token=07039973-318f-4658-bfeb-950c4d811f89">
   </section>
 </template>
 
 <script>
 import firebase from '@/plugins/firebase'
-import canvg from 'canvg';
+import canvg from 'canvg'
+import nanoid from 'nanoid'
 
 export default {
   components: {
@@ -29,14 +31,17 @@ export default {
       text1: 'ヤクザの先輩にエアギター売ってもらった',
     }
   },
+  mounted () {
+  },
   methods: {
-    create() {
-      var storageRef = firebase.storage().ref();
-      var createRef = storageRef.child('test.jpg');
+    async create() {
+      const id = nanoid()
+      const storageRef = firebase.storage().ref();
+      const createRef = storageRef.child(`generate/${id}.png`);
 
       // 擬似canvas要素を作成
-      var canvas = document.createElement('canvas')
-      var svg = this.$refs.svgArea
+      const canvas = document.createElement('canvas')
+      const svg = this.$refs.svgArea
       canvas.width = svg.width.baseVal.value;
       canvas.height = svg.height.baseVal.value;
 
@@ -45,10 +50,17 @@ export default {
       canvg(canvas, data)
 
       // 作成
-      let image = canvas.toDataURL('image/jpeg').split(',')[1]
+      let image = canvas.toDataURL('image/png').split(',')[1]
       createRef.putString(image, 'base64').then((snapshot) =>{
         console.log('Uploaded a blob or file!');
       });
+
+      const dlUrl = await createRef.getDownloadURL()
+      const payload = {
+        id: id,
+        imageUrl: imageUrl
+      }
+      this.$store.dispatch('generate/onGenerated', payload);
     }
   }
 }

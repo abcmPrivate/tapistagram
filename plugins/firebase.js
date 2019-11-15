@@ -12,5 +12,4 @@ if (!firebase.apps.length) {
         measurementId: "G-QRQV6LV3N3"
     })
 }
-
 export default firebase
