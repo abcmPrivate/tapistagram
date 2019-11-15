@@ -1,10 +1,13 @@
 <template>
     <section class="container">
         <div v-if="generatedImageUrl">
-            うっひょおおおおおwwwwww
+            <p>うっひょおおおおおwwwwww</p>
             <img :src="generatedImageUrl">
         </div>
         <div v-else>画像ないっすね</div>
+
+        <p>みんなもタピオカを作ろう</p>
+        <nuxt-link to="/">つくる</nuxt-link>
     </section>
 </template>
 
