@@ -35,32 +35,8 @@ export default {
   },
   methods: {
     async create() {
-      const id = nanoid()
-      const storageRef = firebase.storage().ref();
-      const createRef = storageRef.child(`generate/${id}.png`);
-
-      // 擬似canvas要素を作成
-      const canvas = document.createElement('canvas')
-      const svg = this.$refs.svgArea
-      canvas.width = svg.width.baseVal.value;
-      canvas.height = svg.height.baseVal.value;
-
-      // SVG → Canvas 変換
-      const data = new XMLSerializer().serializeToString(this.$refs.svgArea);
-      canvg(canvas, data)
-
-      // 作成
-      let image = canvas.toDataURL('image/png').split(',')[1]
-      createRef.putString(image, 'base64').then((snapshot) =>{
-        console.log('Uploaded a blob or file!');
-      });
-
-      const dlUrl = await createRef.getDownloadURL()
-      const payload = {
-        id: id,
-        imageUrl: imageUrl
-      }
-      this.$store.dispatch('generate/onGenerated', payload);
+      const refs = this.$refs.svgArea
+      this.$store.dispatch('generate/onGenerated', {refs: refs})
     }
   }
 }
