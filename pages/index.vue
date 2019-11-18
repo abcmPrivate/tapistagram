@@ -11,13 +11,14 @@
             </svg>
         </div>
         <div style="text-align:right">
-            <input v-model="text1" type="text" style="width:100%; margin-bottom:10px">
+            <input v-model="text1" type="text">
             <input v-model="bg" type="text">
-            
             <button @click="changeBg('black')">黒</button>
             <button @click="changeBg('white')">白</button>
             <button @click="changeBg()">デフォルト</button>
-            <button @click="generate">つくる</button>
+        </div>
+        <div class="generate">
+            <button class="generate-button" type="button" @click="generate">つくる</button>
         </div>
     </section>
 </template>
@@ -29,7 +30,28 @@ export default {
     data() {
         return {
             text1: 'ヤクザの先輩にエアギター売ってもらった',
-            bg: '#fff'
+            bg: '#fff',
+            custom: {
+                tapioca: {
+                    type: 'black',
+                    amount: 'normal'
+                },
+                drink: {
+                    type: 'milktea'
+                },
+                foam: {
+                    type: 'milk'
+                },
+                source: {
+                    type: 'blackSugar'
+                },
+                lid: {
+                    color: '#fff'
+                },
+                straw: {
+                    color: '#000'
+                }
+            },
         }
     },
     mounted () {
