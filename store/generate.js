@@ -10,7 +10,7 @@ export const state = () => ({
 })
 
 export const mutations = {
-    changeGeneratedImageUrl ({ state }, imageUrl) {
+    changeGeneratedImageUrl (state, imageUrl) {
         state.generatedImageUrl = imageUrl
     }
 }
@@ -35,32 +35,43 @@ export const actions = {
         return canvas.toDataURL('image/png').split(',')[1]
     },
 
-    async saveImage ({}, image) {
+    async saveImage ({ dispatch }, image) {
         const id = nanoid()
         const storageRef = firebase.storage().ref();
         const createRef = storageRef.child(`generate/${id}.png`);
 
         await createRef.putString(image, 'base64').then((snapshot) => {
             console.log('保存しました');
-        });
+        }).catch((err) => {
+            console.log('保存に失敗しました')
+            // エラーハンドリング処理
+        })
 
         const imageUrl = await createRef.getDownloadURL()
         await generated.doc(id).set({
-            imageUrl: imageUrl
+            url: imageUrl
         })
+
+        await dispatch('toGeneratedPage', {
+            id: id
+        })
+
     },
 
     async getImageUrl ({ state, commit, dispatch}, payload) {
-        let imageUrl
+        let imageUrl = ''
         const id = payload.id
-        const ref = await generated.doc(id).get()
-        if(ref.exists) {
-            imageUrl = await ref.data().imageUrl
-        } else {
-            console.log('URLないわ')
-            imageUrl = ''
+        const doc = await generated.doc(id).get()
+        if(doc.exists) {
+            imageUrl = await doc.data().url
         }
-        commit('changeGeneratedImageUrl', imageUrl)
+        console.log(imageUrl)
+        await commit('changeGeneratedImageUrl', imageUrl)
+    },
+
+    async toGeneratedPage ({ commit }, payload) {
+        const id = payload.id
+        this.$router.push(`/generate/${id}/`)
     }
 }
 
