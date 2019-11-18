@@ -2,7 +2,7 @@
     <section class="container">
         <div>
             <svg ref="svgArea" viewBox="0 0 200 100">
-                <rect x="0" y="0" width="200" height="100" fill="#fff" stroke="#12b886" stroke-width="15"></rect>
+                <rect x="0" y="0" width="200" height="100" :fill="bg" stroke="#12b886" stroke-width="15"></rect>
                 <text 
                 x="50%" 
                 y="50%" 
@@ -12,28 +12,38 @@
         </div>
         <div style="text-align:right">
             <input v-model="text1" type="text" style="width:100%; margin-bottom:10px">
-            <button @click="create">つくる</button>
+            <input v-model="bg" type="text">
+            
+            <button @click="changeBg('black')">黒</button>
+            <button @click="changeBg('white')">白</button>
+            <button @click="changeBg()">デフォルト</button>
+            <button @click="generate">つくる</button>
         </div>
     </section>
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
-
 export default {
     components: {
     },
     data() {
         return {
             text1: 'ヤクザの先輩にエアギター売ってもらった',
+            bg: '#fff'
         }
     },
     mounted () {
     },
     methods: {
-        async create() {
+        generate () {
             const refs = this.$refs.svgArea
             this.$store.dispatch('generate/onGenerated', {refs: refs})
+        },
+
+        changeBg(type) {
+            if(type == 'black') return this.bg = '#000'
+            if(type == 'white') return this.bg = '#fff'
+            return this.bg = '#ed6103'
         }
     }
 }
