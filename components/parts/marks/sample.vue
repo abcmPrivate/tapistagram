@@ -3,14 +3,13 @@
 </template>
 
 <script>
-// import A from '@/components/...'
 export default {
     components: {},
     props: {},
     data() {
         return {}
     },
-    computed: {},
+    computed () {},
     mounted () {},
     created () {},
     methods: {}

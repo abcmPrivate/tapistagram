@@ -1,15 +1,14 @@
 <template>
     <section class="container">
-        <div>
-            <svg ref="svgArea" viewBox="0 0 200 100">
-                <rect x="0" y="0" width="200" height="100" :fill="bg" stroke="#12b886" stroke-width="15"></rect>
-                <text 
-                x="50%" 
-                y="50%" 
-                font-size="8px"
-                text-anchor="middle">{{text1}}</text>
-            </svg>
+        <div class="preview-container">
+            <div class="preview">
+                <svg ref="svgArea" viewBox="0 0 500 500">
+                    <Bg :fill="bg" />
+                    <text x="50%" y="50%" font-size="20px" text-anchor="middle">{{ text1 }}</text>
+                </svg>
+            </div>
         </div>
+
         <div style="text-align:right">
             <input v-model="text1" type="text">
             <input v-model="bg" type="text">
@@ -24,12 +23,14 @@
 </template>
 
 <script>
+import Bg from '@/components/parts/bg/Bg'
 export default {
     components: {
+        Bg
     },
     data() {
         return {
-            text1: 'ヤクザの先輩にエアギター売ってもらった',
+            text1: 'ヤクザの先輩にエアギター売ってもらったんですよ',
             bg: '#fff',
             custom: {
                 tapioca: {
@@ -73,15 +74,11 @@ export default {
 
 <style lang="scss" scoped>
 .preview {
-    display: flex;
-    @include mq(tbAndSp) {
-        flex-direction: column;
-    }
-    &-canvas {
-        background-color: $color-white;
-    }
-    &-selects {
-        padding: 10px;
+    width: 100%;
+    max-width: 500px;
+    &-container {
+        width: 100%;
+        margin: 0 auto;
     }
 }
 .generate {

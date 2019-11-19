@@ -1,6 +1,8 @@
 <template>
     <header class="header">
-        <p class="header-logo"><Logo /></p>
+        <p class="header-logo">
+            <Logo />
+        </p>
     </header>
 </template>
 <script>
