@@ -3,7 +3,7 @@ const material = {
         {
             name: 'blacksugar',
             name_jp: '黒糖',
-            color: '#', // color code
+            color: '#000', // color code
         },
         {
             name: 'whitesugar',
@@ -13,17 +13,17 @@ const material = {
         {
             name: 'greentea',
             name_jp: '抹茶',
-            color: '#'
+            color: '#7d5'
         },
         {
             name: 'strawberry',
             name_jp: 'いちご',
-            color: '#'
+            color: '#ffbadd'
         },
         {
             name: 'tea',
             name_jp: '紅茶',
-            color: '#'
+            color: 'brown'
         }
     ],
     source: [

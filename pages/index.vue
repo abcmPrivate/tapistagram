@@ -1,21 +1,30 @@
 <template>
     <section class="container">
-        <div class="preview-container">
+        <div class="generator-container">
             <div class="preview">
                 <svg ref="svgArea" viewBox="0 0 500 500">
                     <Bg :fill="bg" />
                     <text x="50%" y="50%" font-size="20px" text-anchor="middle">{{ text1 }}</text>
                 </svg>
             </div>
+            <div class="select">
+                <input v-model="text1" type="text">
+                <input v-model="bg" type="text">
+                <button @click="changeBg('black')">黒</button>
+                <button @click="changeBg('white')">白</button>
+                <button @click="changeBg()">デフォルト</button>
+            </div>
+
+            <div class="a">
+                <ul class="tabs">
+                    <li v-for="(key, index) in categories" :key="index">{{ key }}</li>
+                </ul>
+                <div>
+                    <List v-for="(key, index) in material" :key="index" :parts="key" :category="categories[index]" />
+                </div>
+            </div>
         </div>
 
-        <div style="text-align:right">
-            <input v-model="text1" type="text">
-            <input v-model="bg" type="text">
-            <button @click="changeBg('black')">黒</button>
-            <button @click="changeBg('white')">白</button>
-            <button @click="changeBg()">デフォルト</button>
-        </div>
         <div class="generate">
             <button class="generate-button" type="button" @click="generate">つくる</button>
         </div>
@@ -24,9 +33,11 @@
 
 <script>
 import Bg from '@/components/parts/bg/Bg'
+import material from '@/apis/material'
+import List from '@/components/selects/List'
 export default {
     components: {
-        Bg
+        Bg, List
     },
     data() {
         return {
@@ -55,7 +66,20 @@ export default {
             },
         }
     },
+    computed: {
+        categories () {
+            const arr = []
+            for(let[key] of Object.entries(material)) {
+                arr.push(key)
+            }
+            return arr
+        },
+        material () {
+            return material;
+        }
+    },
     mounted () {
+        console.log(material)
     },
     methods: {
         generate () {
@@ -73,13 +97,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.generator-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    @include mq(sp) {
+        flex-direction: column;
+    }
+}
 .preview {
     width: 100%;
     max-width: 500px;
-    &-container {
-        width: 100%;
-        margin: 0 auto;
-    }
 }
 .generate {
     margin-top: 20px;

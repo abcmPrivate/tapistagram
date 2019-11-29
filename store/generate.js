@@ -34,8 +34,8 @@ export const actions = {
      */
     async createImage ({}, refs) {
         const canvas = document.createElement('canvas')
-        canvas.width = refs.width.baseVal.value;
-        canvas.height = refs.height.baseVal.value;
+        canvas.width = 500
+        canvas.height = 500
 
         // SVG → Canvas 変換
         const data = new XMLSerializer().serializeToString(refs);
