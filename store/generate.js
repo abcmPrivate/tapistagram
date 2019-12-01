@@ -6,12 +6,14 @@ const db = firebase.firestore()
 const generated = db.collection('generated')
 export const state = () => ({
     id: '',
-    generatedImageUrl: ''
+    generatedImageUrl: '',
+    name: ''
 })
 
 export const mutations = {
-    changeGeneratedImageUrl (state, imageUrl) {
-        state.generatedImageUrl = imageUrl
+    changeGeneratedImageUrl (state, payload) {
+        state.generatedImageUrl = payload.imageUrl
+        state.name = payload.name
     }
 }
 
@@ -23,8 +25,9 @@ export const actions = {
      */
     async onGenerated ({ dispatch }, payload) {
         const refs = payload.refs
+        const name = payload.name
         const image = await dispatch('createImage', refs)
-        await dispatch('saveImage', image)
+        await dispatch('saveImage', { image, name })
     },
 
     /**
@@ -50,7 +53,10 @@ export const actions = {
      * @param {*} param0 
      * @param {*} image 画像データ 
      */
-    async saveImage ({ dispatch }, image) {
+    async saveImage ({ dispatch }, payload) {
+        const image = payload.image
+        const name = payload.name
+
         const id = nanoid()
         const storageRef = firebase.storage().ref();
         const createRef = storageRef.child(`generate/${id}.png`);
@@ -64,7 +70,8 @@ export const actions = {
 
         const imageUrl = await createRef.getDownloadURL()
         await generated.doc(id).set({
-            url: imageUrl
+            url: imageUrl,
+            name
         })
 
         // 一連の処理が終了したら生成ページへ飛ばす
@@ -90,17 +97,24 @@ export const actions = {
      */
     async getImageUrl ({ commit }, payload) {
         let imageUrl = ''
+        let name = ''
         const id = payload.id
         const doc = await generated.doc(id).get()
         if(doc.exists) {
-            imageUrl = await doc.data().url
+            const data = await doc.data()
+
+            imageUrl = data.url
+            name = data.name
         }
-        await commit('changeGeneratedImageUrl', imageUrl)
+        await commit('changeGeneratedImageUrl', {imageUrl, name})
     },
 }
 
 export const getters = {
     getGeneratedImageUrl (state ) {
         return state.generatedImageUrl
+    },
+    getName (state) {
+        return state.name
     }
 }

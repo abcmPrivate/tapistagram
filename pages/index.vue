@@ -105,7 +105,10 @@ export default {
     methods: {
         generate () {
             const refs = this.$refs.svgArea
-            this.$store.dispatch('generate/onGenerated', {refs: refs})
+            const name = this.tapiocaName
+            this.$store.dispatch('generate/onGenerated', {
+                refs, name
+            })
         },
 
         changeBg(type) {

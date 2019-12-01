@@ -1,7 +1,7 @@
 <template>
     <section class="container">
         <div v-if="generatedImageUrl">
-            <p>うっひょおおおおおwwwwww</p>
+            <h2 v-if="name">#{{ name }}</h2>
             <img :src="generatedImageUrl">
         </div>
         <div v-else>画像ないっすね</div>
@@ -26,7 +26,8 @@ export default {
     },
     computed: {
         ...mapGetters({
-            generatedImageUrl: 'generate/getGeneratedImageUrl'
+            generatedImageUrl: 'generate/getGeneratedImageUrl',
+            name: 'generate/getName'
         }),
     },
     mounted () {
