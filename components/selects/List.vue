@@ -3,7 +3,7 @@
         <li v-for="(part, index) in parts" :key="index" class="list-icon">
             <label class="oshushi">
                 <input type="radio" :name="category">
-                <span class="shake" :data-unit="part.name_jp" :style="bgcolor(part.color)">
+                <span class="shake" :data-unit="part.name_jp" :style="bgcolor(part.color)" @click="changeParts('tapioca', part)">
                     {{ part.name }}
                 </span>
             </label>
@@ -35,6 +35,14 @@ export default {
     methods: {
         bgcolor (color) {
             return `background-color: ${color}`
+        },
+
+        changeParts (category, part) {
+            const payload = {
+                category: 'tapioca',
+                part: part
+            }
+            this.$store.commit('tapioca/changeParts', payload)
         }
     }
 }

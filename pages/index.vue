@@ -5,6 +5,7 @@
                 <svg ref="svgArea" viewBox="0 0 500 500">
                     <Bg :fill="bg" />
                     <text x="50%" y="50%" font-size="20px" text-anchor="middle">{{ text1 }}</text>
+                    <Tapioca />
                 </svg>
             </div>
             <div class="select">
@@ -33,11 +34,12 @@
 
 <script>
 import Bg from '@/components/parts/bg/Bg'
+import Tapioca from '@/components/parts/Tapioca'
 import material from '@/apis/material'
 import List from '@/components/selects/List'
 export default {
     components: {
-        Bg, List
+        Bg, List, Tapioca
     },
     data() {
         return {
