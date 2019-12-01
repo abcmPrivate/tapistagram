@@ -4,8 +4,13 @@
             <div class="preview">
                 <svg ref="svgArea" viewBox="0 0 600 600">
                     <Bg :fill="bg" />
+                    <CupBack />
                     <text x="50%" y="50%" font-size="20px" text-anchor="middle">{{ text1 }}</text>
+                    <Drink />
                     <Tapioca />
+                    <Foam />
+                    <Straw />
+                    <CupFront />
                 </svg>
             </div>
             <div class="select">
@@ -33,13 +38,24 @@
 </template>
 
 <script>
-import Bg from '@/components/parts/bg/Bg'
+// parts-components
+import Bg from '@/components/parts/Bg'
 import Tapioca from '@/components/parts/Tapioca'
-import material from '@/apis/material'
+import Drink from '@/components/parts/Drink'
+import CupFront from '@/components/parts/cups/Front'
+import CupBack from '@/components/parts/cups/Back'
+import Straw from '@/components/parts/Straw'
+import Foam from '@/components/parts/Foam'
+
+// etc-components
 import List from '@/components/selects/List'
+
+// apis
+import material from '@/apis/material'
 export default {
     components: {
-        Bg, List, Tapioca
+        Tapioca, Drink, CupFront, CupBack, Bg, Straw, Foam,
+        List
     },
     data() {
         return {

@@ -44,13 +44,21 @@ const material = {
         }
     ],
     straw: [
-        '#', '#', '#', '#'
+        {
+            color: '#000',
+        },
+        {
+            color: '#fff',
+        },
+        {
+            color: '#ed6103'
+        }
     ],
     drink: [
         {
             name: 'milktea',
             name_jp: 'ミルクティー',
-            color: '#'
+            color: '#E2C1A3'
         },
         {
             name: 'milk',

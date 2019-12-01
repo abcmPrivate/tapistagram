@@ -9,18 +9,22 @@ export const state = () => ({
     source: {
         name: 'blacksugar',
         name_jp: '黒糖',
-        color: '#'
+        color: '#684535'
     },
     drink: {
         name: 'milktea',
         name_jp: 'ミルクティー',
-        color: '#'
+        color: '#E2C1A3'
     },
     foam: {
         name: 'milk',
         name_jp: 'ミルクフォーム',
+        color: '#fff'
     },
-    mark: {}
+    mark: {},
+    straw: {
+        color: '#ed6103'
+    }
 })
 export const mutations = {
     changeParts (state, payload) {
@@ -66,5 +70,8 @@ export const getters = {
     },
     getFoam (state) {
         return state.foam
+    },
+    getStraw (state) {
+        return state.straw
     }
 }
