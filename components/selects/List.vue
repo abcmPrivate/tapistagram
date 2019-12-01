@@ -3,8 +3,8 @@
         <li v-for="(part, index) in parts" :key="index" class="list-icon">
             <label class="oshushi">
                 <input type="radio" :name="category">
-                <span class="shake" :data-unit="part.name_jp" :style="bgcolor(part.color)" @click="changeParts('tapioca', part)">
-                    {{ part.name }}
+                <span class="shake" :data-unit="part.name_jp" :style="bgcolor(part.color)" @click="changeParts(part)">
+                    {{ part.name_jp }}
                 </span>
             </label>
         </li>
@@ -29,7 +29,8 @@ export default {
     data() {
         return {}
     },
-    computed: {},
+    computed: {
+    },
     mounted () {},
     created () {},
     methods: {
@@ -37,11 +38,9 @@ export default {
             return `background-color: ${color}`
         },
 
-        changeParts (category, part) {
-            const payload = {
-                category: 'tapioca',
-                part: part
-            }
+        changeParts (part) {
+            const category = this.category
+            const payload = { category, part }
             this.$store.commit('tapioca/changeParts', payload)
         }
     }
@@ -49,29 +48,22 @@ export default {
 </script>
 <style lang="scss" scoped>
 .list {
-    // display: flex;
-    %shakeafter {
-        &::after {
-            content: attr(data-unit);
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            margin: auto;
-            z-index: 1;
-            background-color: rgba(0, 0, 0, .3);
-            color: #fff;
-        }
-    }
+    display: flex;
+    flex-wrap: wrap;
     .shake {
-        display: block;
-        position: relative;
-        padding: 50px;
-        background-color: #fff;
-        border: 2px solid transparent;
+        // position: relative;
+        // background-color: #fff;
+        // border: 2px solid transparent;
+        // width: 100px;
+        // height: 100px;
+        // box-sizing: border-box;
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
+        // font-size: 1.2em;
         &:hover {
-            @extend %shakeafter;
+            cursor: pointer;
+            opacity: .8;
         }
     }
     input {

@@ -1,33 +1,30 @@
 <template>
-    <section class="container">
+    <section class="sec-container">
         <div class="generator-container">
             <div class="preview">
                 <svg ref="svgArea" viewBox="0 0 600 600">
                     <Bg :fill="bg" />
                     <CupBack />
-                    <text x="50%" y="50%" font-size="20px" text-anchor="middle">{{ text1 }}</text>
+                    <!-- <text x="50%" y="50%" font-size="20px" text-anchor="middle">{{ text1 }}</text> -->
                     <Drink />
                     <Tapioca />
                     <Foam />
                     <Straw />
                     <CupFront />
                 </svg>
+                {{ tapiocaName }}
             </div>
-            <div class="select">
-                <input v-model="text1" type="text">
-                <input v-model="bg" type="text">
+
+            <div class="partsSelect">
                 <button @click="changeBg('black')">黒</button>
                 <button @click="changeBg('white')">白</button>
                 <button @click="changeBg()">デフォルト</button>
-            </div>
-
-            <div class="a">
-                <ul class="tabs">
+                <!-- <ul class="tabs">
                     <li v-for="(key, index) in categories" :key="index">{{ key }}</li>
-                </ul>
-                <div>
-                    <List v-for="(key, index) in material" :key="index" :parts="key" :category="categories[index]" />
-                </div>
+                </ul> -->
+                <!-- <div> -->
+                    <List v-for="(key, index) in material" :key="index" :parts="key" :category="index" />
+                <!-- </div> -->
             </div>
         </div>
 
@@ -38,6 +35,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 // parts-components
 import Bg from '@/components/parts/Bg'
 import Tapioca from '@/components/parts/Tapioca'
@@ -60,7 +59,7 @@ export default {
     data() {
         return {
             text1: 'ヤクザの先輩にエアギター売ってもらったんですよ',
-            bg: '#fff',
+            bg: '#9b7d66',
             custom: {
                 tapioca: {
                     type: 'black',
@@ -94,7 +93,10 @@ export default {
         },
         material () {
             return material;
-        }
+        },
+        ...mapGetters({
+            tapiocaName: 'tapioca/getName'
+        })
     },
     mounted () {
         console.log(material)
@@ -115,12 +117,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.sec-container {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 50px 10px;
+    box-sizing: border-box;
+}
 .generator-container {
     width: 100%;
 
     display: flex;
     justify-content: center;
-    flex-direction: column;
     @include mq(sp) {
         flex-direction: column;
     }
@@ -128,6 +136,7 @@ export default {
 .preview {
     width: 100%;
     max-width: 500px;
+    flex: 2;
 }
 .generate {
     margin-top: 20px;
@@ -144,6 +153,10 @@ export default {
             background-color: lighten($color-accent, 10%);
         }
     }
+}
+.partsSelect {
+    flex: 3;
+    // flex: 1;
 }
 .valiations {
     display: flex;

@@ -13,17 +13,22 @@ const material = {
         {
             name: 'greentea',
             name_jp: '抹茶',
-            color: '#7d5'
+            color: '#c5c56a'
         },
         {
             name: 'strawberry',
             name_jp: 'いちご',
-            color: '#ffbadd'
+            color: '#bc2328'
         },
         {
             name: 'tea',
             name_jp: '紅茶',
-            color: 'brown'
+            color: '#8e1712'
+        },
+        {
+            name: null,
+            name_jp: 'なし',
+            color: 'transparent'
         }
     ],
     source: [
@@ -63,57 +68,65 @@ const material = {
         {
             name: 'milk',
             name_jp: 'ミルク',
-            color: '#'
+            color: '#fffef6'
         },
         {
             name: 'oolongtea',
             name_jp: 'ウーロンティー',
-            color: '#'
+            color: '#8b0000'
         },
         {
             name: 'tea',
-            name_jp: '紅茶',
-            color: '#'
-        },
-        {
-            name: 'jasminetea',
-            name_jp: 'ジャスミンティー',
-            color: '#'
+            name_jp: 'ティー',
+            color: '#7a2c22'
         },
         {
             name: 'greentea',
             name_jp: '抹茶',
-            color: '#'
+            color: '#869553'
         },
         {
             name: 'greentea-milk',
             name_jp: '抹茶ミルク',
-            color: '#'
+            color: '#c5d190'
         },
         {
             name: 'roasted-greentea',
             name_jp: 'ほうじ茶',
-            color: '#'
+            color: '#864a2c'
         },
         {
             name: 'roasted-greentea',
             name_jp: 'ほうじ茶ミルク',
-            color: '#'
+            color: '#b2905d'
         },
+        {
+            name: 'chocolate',
+            name_jp: 'チョコレート',
+            color: '#513311'
+        },
+        {
+            name: 'chocolate-milk',
+            name_jp: 'チョコレートミルク',
+            color: '#bb9a82'
+        }
     ],
     foam: [
         {
             name: 'milk',
             name_jp: 'ミルクフォーム',
+            color: '#fffef6'
         },
         {
             name: 'cheese',
             name_jp: 'チーズフォーム',
+            color: '#ffeecd'
         },
         {
-            name: 'cookie-cream',
-            name_jp: '',
-        },
+            name: null,
+            name_jp: 'なし',
+            color: 'transparent'
+        }
     ],
     mark: [
         {

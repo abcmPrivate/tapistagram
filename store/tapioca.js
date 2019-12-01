@@ -19,7 +19,7 @@ export const state = () => ({
     foam: {
         name: 'milk',
         name_jp: 'ミルクフォーム',
-        color: '#fff'
+        color: '#fffef6'
     },
     mark: {},
     straw: {
@@ -30,6 +30,17 @@ export const mutations = {
     changeParts (state, payload) {
         const category = payload.category
         const part = payload.part
+
+        console.log(part)
+
+        if (!part.name) {
+            state[category] = {
+                name: '',
+                name_jp: '',
+                color: 'transparent'
+            }
+            return
+        }
 
         state[category] = {
             name: part.name,
@@ -73,5 +84,19 @@ export const getters = {
     },
     getStraw (state) {
         return state.straw
+    },
+    getName (state) {
+        let tapioca = ''
+        let source = ''
+        const foam = state.foam.name_jp
+        if(state.source.name) {
+            source = state.source.name_jp + 'ソース'
+        }
+        if(state.tapioca.name) {
+            tapioca = state.tapioca.name_jp + 'タピオカ'
+        }
+        const drink = state.drink.name_jp
+
+        return tapioca + drink + 'with' + foam + source
     }
 }
