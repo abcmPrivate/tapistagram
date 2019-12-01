@@ -12,7 +12,8 @@
                     <Straw />
                     <CupFront />
                 </svg>
-                {{ tapiocaName }}
+                <p>{{ tapiocaName }}</p>
+                <i class="fas fa-glass-whiskey"></i>
             </div>
 
             <div class="partsSelect">
