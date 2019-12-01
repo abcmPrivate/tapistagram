@@ -4,7 +4,7 @@ export const state = () => ({
     tapioca: {
         name: 'blacksugar',
         name_jp: '黒糖',
-        color: '#ed6103'
+        color: '#684535'
     },
     source: {
         name: 'blacksugar',

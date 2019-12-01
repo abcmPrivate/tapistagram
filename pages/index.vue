@@ -2,7 +2,7 @@
     <section class="container">
         <div class="generator-container">
             <div class="preview">
-                <svg ref="svgArea" viewBox="0 0 500 500">
+                <svg ref="svgArea" viewBox="0 0 600 600">
                     <Bg :fill="bg" />
                     <text x="50%" y="50%" font-size="20px" text-anchor="middle">{{ text1 }}</text>
                     <Tapioca />
@@ -104,6 +104,7 @@ export default {
 
     display: flex;
     justify-content: center;
+    flex-direction: column;
     @include mq(sp) {
         flex-direction: column;
     }

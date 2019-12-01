@@ -3,7 +3,7 @@ const material = {
         {
             name: 'blacksugar',
             name_jp: '黒糖',
-            color: '#000', // color code
+            color: '#684535', // color code
         },
         {
             name: 'whitesugar',
