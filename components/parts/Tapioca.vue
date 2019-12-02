@@ -1,13 +1,13 @@
 <template>
 	<g width="100%" height="100%">
-		<!-- <g>
+		<g>
 			<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="311.7861" y1="422.2934" x2="311.7861" y2="549.5845">
-				<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0"/>
-				<stop  offset="1" style="stop-color:#483325"/>
+				<stop  offset="0" :style="`stop-color: ${tapioca.color};stop-opacity:0`"/>
+				<stop  offset="1" :style="`stop-color: ${tapioca.color}`"/>
 			</linearGradient>
-			<path class="st4" d="M197.6,515.7c-0.1,13.1,48.3,36.2,116.8,33.7c63.2-2.4,106.7-11.8,113-37.7h0l4.3-73.1
+			<path fill="url(#SVGID_2_)" d="M197.6,515.7c-0.1,13.1,48.3,36.2,116.8,33.7c63.2-2.4,106.7-11.8,113-37.7h0l4.3-73.1
 				c0,0-234.1-29.4-239.8-9.2L197.6,515.7z"/>
-		</g> -->
+		</g>
 		<path :fill="tapioca.color" d="M212.8,457.9c0,0-6.5-5-1.6-11.6c4.9-6.6,9.9-6.1,15.2-2.3c5.4,3.8,4.9,6.6,5.8,8c0.9,1.4,2.2,2.3-1.3,7
 			c-3.6,4.7-7.6,5.2-13.9,3.3C210.8,460.4,214.4,462.4,212.8,457.9z"/>
 		<path :fill="tapioca.color" d="M218.2,504.1c-0.1-0.7-0.4-1.3-0.9-1.8c-1.4-1.6-4.6-6.4-0.9-12.2c4.6-7.3,9.2-6.7,14.3-2.6s4.6,7.3,5.5,8.8
@@ -84,8 +84,6 @@
 			c-6.4-2-8.6-6.3-9.2-14.1C396.7,476.1,396,481,400.2,477.3z"/>
 		<path :fill="tapioca.color" d="M397.2,481.3c0,0-1.3-8.2,6.6-9.4c7.9-1.3,11.1,2.5,12.5,9s-0.9,8.2-1.2,9.8c-0.3,1.6,0,3.3-5.7,4.1
 			c-5.7,0.9-8.9-1.6-12.1-7.4C394.1,481.7,395.2,485.7,397.2,481.3z"/>
-        <!-- <rect x="20" y="20" width="100px" height="200px" :fill="tapioca.color" /> -->
-        <!-- <text x="50%" y="30%" font-size="20px" text-anchor="middle">{{ tapioca.name }}</text> -->
     </g>
 </template>
 

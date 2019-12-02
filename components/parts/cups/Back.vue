@@ -22,9 +22,6 @@ export default {
         return {}
     },
     computed: {
-        ...mapGetters ({
-            drink: 'tapioca/getDrink'
-        })
     },
     mounted () {},
     created () {},
