@@ -30,7 +30,15 @@
             </div>
 
             <div class="d-flex justify-center">
-                <v-color-picker></v-color-picker>
+                <v-color-picker
+                    v-model="bg"
+                    :hide-canvas="pick.hideCanvas"
+                    :hide-inputs="pick.hideInputs"
+                    :hide-mode-switch="pick.hideModeSwitch"
+                    :mode.sync="pick.mode"
+                    :show-swatches="pick.showSwatches"
+                    class="mx-auto"
+                ></v-color-picker>
             </div>
 
             <div class="generate">
@@ -65,12 +73,14 @@ export default {
     },
     data() {
         return {
-            colors: {
-            hex: '#194d33',
-            hsl: { h: 150, s: 0.5, l: 0.2, a: 1 },
-            hsv: { h: 150, s: 0.66, v: 0.30, a: 1 },
-            rgba: { r: 25, g: 77, b: 51, a: 1 },
-            a: 1
+            pick: {
+                color: '#8E00FF',
+                hideCanvas: false,
+                hideInputs: true,
+                hideModeSwitch: true,
+                mode: 'rgba',
+                modes: ['rgba', 'hsla', 'hexa'],
+                showSwatches: true,
             },
             bg: '#9b7d66',
             custom: {
