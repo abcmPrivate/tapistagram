@@ -35,18 +35,33 @@ const material = {
         {
             name: 'blacksugar',
             name_jp: '黒糖',
-            color: '#'
+            color: '#684535'
+        },
+        {
+            name: 'milk',
+            name_jp: 'ミルク',
+            color: '#fffef6'
+        },
+        {
+            name: 'cheese',
+            name_jp: 'チーズ',
+            color: '#fffef6'
         },
         {
             name: 'greentea',
             name_jp: '抹茶',
-            color: '#'
+            color: '#c5c56a'
         },
         {
             name: 'strawberry',
             name_jp: 'いちご',
-            color: '#'
-        }
+            color: '#bc2328'
+        },
+        {
+            name: 'chocolate',
+            name_jp: 'チョコレート',
+            color: '#513311'
+        },
     ],
     straw: [
         {
@@ -57,6 +72,9 @@ const material = {
         },
         {
             color: '#ed6103'
+        },
+        {
+            color: '#AC3739'
         }
     ],
     drink: [
