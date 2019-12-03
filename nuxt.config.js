@@ -1,6 +1,6 @@
 
 export default {
-    mode: 'universal',
+    mode: 'spa',
     /*
     ** Headers of the page
     */
@@ -44,6 +44,7 @@ export default {
     modules: [
         '@nuxtjs/axios',
         '@nuxtjs/style-resources',
+        '@nuxtjs/vuetify',
     ],
     /*
     ** Axios module configuration

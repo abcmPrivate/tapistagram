@@ -29,7 +29,9 @@
                 </div>
             </div>
 
-
+            <div class="d-flex justify-center">
+                <v-color-picker></v-color-picker>
+            </div>
 
             <div class="generate">
                 <button class="generate-button" type="button" @click="generate">つくる</button>
