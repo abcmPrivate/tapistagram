@@ -21,6 +21,11 @@ export const state = () => ({
         name_jp: 'ミルクフォーム',
         color: '#fffef6'
     },
+    cream: {
+        name: 'milk',
+        name_jp: 'ミルククリーム',
+        color: '#fffef6'
+    },
     mark: {},
     straw: {
         color: '#ed6103'
@@ -81,6 +86,9 @@ export const getters = {
     },
     getFoam (state) {
         return state.foam
+    },
+    getCream (state) {
+        return state.cream
     },
     getStraw (state) {
         return state.straw

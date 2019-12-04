@@ -1,51 +1,57 @@
 <template>
-    <!-- <v-app> -->
-        <section class="sec-container">
-            <div class="generator-container">
-                <div class="preview">
-                    <svg ref="svgArea" viewBox="0 0 600 600">
-                        <Bg :fill="bg" />
-                        <CupBack />
-                        <Drink />
-                        <Tapioca />
-                        <Foam />
-                        <Straw />
-                        <CupFront />
-                    </svg>
-                    <p>{{ tapiocaName }}</p>
-                </div>
-
-                <div class="partsSelect">
-                    <TapiIcon tapioca />
-                    <TapiIcon drink />
-                    <TapiIcon foam />
-                    <TapiIcon cream />
-                    <TapiIcon straw />
-                    <TapiIcon />
-                    <button @click="changeBg('black')">黒</button>
-                    <button @click="changeBg('white')">白</button>
-                    <button @click="changeBg()">デフォルト</button>
-                    <List v-for="(key, index) in material" :key="index" :parts="key" :category="index" />
-                </div>
+    <section class="sec-container">
+        <div class="generator-container">
+            <div class="preview">
+                <svg ref="svgArea" viewBox="0 0 600 600">
+                    <Bg :fill="bg" />
+                    <CupBack />
+                    <Drink />
+                    <Tapioca />
+                    <Cream />
+                    <Straw />
+                    <CupFront />
+                </svg>
+                <p>{{ tapiocaName }}</p>
             </div>
 
-            <div class="d-flex justify-center">
-                <v-color-picker
-                    v-model="bg"
-                    :hide-canvas="pick.hideCanvas"
-                    :hide-inputs="pick.hideInputs"
-                    :hide-mode-switch="pick.hideModeSwitch"
-                    :mode.sync="pick.mode"
-                    :show-swatches="pick.showSwatches"
-                    class="mx-auto"
-                ></v-color-picker>
+            <div class="partsSelect">
+                <dl>
+                    <dt title="タピオカ"><TapiIcon tapioca /></dt>
+                    <dd>
+                        <select name="tapioca" class="selec" @change="changeParts()">
+                            <option v-for="(key, index) in material.tapioca" :key="index" :value="key.name_jp" :label="key.name_jp" />
+                        </select> 
+                        <!-- <List :parts="material.tapioca" category="tapioca" /> -->
+                    </dd>
+                </dl>
+                <TapiIcon drink />
+                <TapiIcon foam />
+                <TapiIcon cream />
+                <TapiIcon straw />
+                <TapiIcon />
+                <button @click="changeBg('black')">黒</button>
+                <button @click="changeBg('white')">白</button>
+                <button @click="changeBg()">デフォルト</button>
+                <List v-for="(key, index) in material" :key="index" :parts="key" :category="index" />
             </div>
+        </div>
 
-            <div class="generate">
-                <button class="generate-button" type="button" @click="generate">つくる</button>
-            </div>
-        </section>
-    <!-- </v-app> -->
+        <div class="d-flex justify-center">
+            <v-color-picker
+                v-model="bg"
+                :hide-canvas="pick.hideCanvas"
+                :hide-inputs="pick.hideInputs"
+                :hide-mode-switch="pick.hideModeSwitch"
+                :mode.sync="pick.mode"
+                :show-swatches="pick.showSwatches"
+                class="mx-auto"
+            ></v-color-picker>
+        </div>
+
+        <div class="generate">
+            <button class="generate-button" type="button" @click="generate">つくる</button>
+        </div>
+    </section>
 </template>
 
 <script>
@@ -58,7 +64,7 @@ import Drink from '@/components/parts/Drink'
 import CupFront from '@/components/parts/cups/Front'
 import CupBack from '@/components/parts/cups/Back'
 import Straw from '@/components/parts/Straw'
-import Foam from '@/components/parts/Foam'
+import Cream from '@/components/parts/Cream'
 
 // etc-components
 import TapiIcon from '@/components/common/TapiIcon'
@@ -66,9 +72,10 @@ import List from '@/components/selects/List'
 
 // apis
 import material from '@/apis/material'
+
 export default {
     components: {
-        Tapioca, Drink, CupFront, CupBack, Bg, Straw, Foam,
+        Tapioca, Drink, CupFront, CupBack, Bg, Straw, Cream,
         List, TapiIcon
     },
     data() {
@@ -143,8 +150,9 @@ export default {
             return this.bg = '#ed6103'
         },
 
-        alert () {
-            alert('oshushi')
+        changeParts (part, category) {
+            const payload = { category, part }
+            this.$store.commit('tapioca/changeParts', payload)
         }
     }
 }
@@ -223,8 +231,9 @@ export default {
     }
 }
 
-.picker {
-  display: inline-block;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(3, 1, 1, 0.08);
+.selec {
+    display: block;
+    background-color: #fff;
+    padding: 20px;
 }
 </style>
