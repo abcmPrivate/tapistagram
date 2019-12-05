@@ -7,6 +7,7 @@
                     <CupBack />
                     <Drink />
                     <Tapioca />
+                    <Foam />
                     <Cream />
                     <Straw />
                     <CupFront />
@@ -15,24 +16,19 @@
             </div>
 
             <div class="partsSelect">
-                <dl>
-                    <dt title="タピオカ"><TapiIcon tapioca /></dt>
-                    <dd>
-                        <select name="tapioca" class="selec" @change="changeParts()">
-                            <option v-for="(key, index) in material.tapioca" :key="index" :value="key.name_jp" :label="key.name_jp" />
-                        </select> 
-                        <!-- <List :parts="material.tapioca" category="tapioca" /> -->
-                    </dd>
-                </dl>
-                <TapiIcon drink />
-                <TapiIcon foam />
-                <TapiIcon cream />
-                <TapiIcon straw />
-                <TapiIcon />
-                <button @click="changeBg('black')">黒</button>
-                <button @click="changeBg('white')">白</button>
-                <button @click="changeBg()">デフォルト</button>
-                <List v-for="(key, index) in material" :key="index" :parts="key" :category="index" />
+                <ul class="tapis">
+                    <li><TapiIcon width="30" tapioca/></li>
+                    <li><TapiIcon width="30" drink /></li>
+                    <li><TapiIcon width="30" foam /></li>
+                    <li><TapiIcon width="30" cream /></li>
+                    <li><TapiIcon width="30" straw /></li>
+                </ul>
+
+                <div class="frame">
+                    <List :parts="material.tapioca" category="tapioca" />
+                </div>
+
+                <!-- <List v-for="(key, index) in material" :key="index" :parts="key" :category="index" /> -->
             </div>
         </div>
 
@@ -65,6 +61,7 @@ import CupFront from '@/components/parts/cups/Front'
 import CupBack from '@/components/parts/cups/Back'
 import Straw from '@/components/parts/Straw'
 import Cream from '@/components/parts/Cream'
+import Foam from '@/components/parts/Foam'
 
 // etc-components
 import TapiIcon from '@/components/common/TapiIcon'
@@ -75,7 +72,7 @@ import material from '@/apis/material'
 
 export default {
     components: {
-        Tapioca, Drink, CupFront, CupBack, Bg, Straw, Cream,
+        Tapioca, Drink, CupFront, CupBack, Bg, Straw, Cream, Foam,
         List, TapiIcon
     },
     data() {
@@ -165,6 +162,9 @@ export default {
     margin: 0 auto;
     padding: 50px 10px;
     box-sizing: border-box;
+    @include mq(sp) {
+        padding: 20px 10px;
+    }
 }
 .generator-container {
     width: 100%;
@@ -201,7 +201,26 @@ export default {
 }
 .partsSelect {
     flex: 3;
+    margin-left: 20px;
+    @include mq(sp) {
+        margin: 10px 0 0 0;
+    }
     // flex: 1;
+}
+.tapis {
+    display: flex;
+    li {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        border-bottom: 5px solid $color-milktea;
+        background-color: lighten($color-milktea, 10%);
+        &.is-selected,
+        &:hover {
+            background-color: $color-milktea;
+        }
+    }
 }
 .valiations {
     display: flex;

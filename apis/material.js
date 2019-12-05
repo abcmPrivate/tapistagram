@@ -2,79 +2,33 @@ const material = {
     tapioca: [
         {
             name: 'blacksugar',
-            name_jp: '黒糖',
+            name_jp: '黒糖タピオカ',
             color: '#684535', // color code
         },
         {
             name: 'whitesugar',
-            name_jp: '和三盆',
+            name_jp: '和三盆タピオカ',
             color: '#fff'
         },
         {
             name: 'greentea',
-            name_jp: '抹茶',
+            name_jp: '抹茶タピオカ',
             color: '#c5c56a'
         },
         {
             name: 'strawberry',
-            name_jp: 'いちご',
+            name_jp: 'いちごタピオカ',
             color: '#bc2328'
         },
         {
             name: 'tea',
-            name_jp: '紅茶',
+            name_jp: '紅茶タピオカ',
             color: '#8e1712'
         },
         {
             name: null,
             name_jp: 'なし',
             color: 'transparent'
-        }
-    ],
-    source: [
-        {
-            name: 'blacksugar',
-            name_jp: '黒糖',
-            color: '#684535'
-        },
-        {
-            name: 'milk',
-            name_jp: 'ミルク',
-            color: '#fffef6'
-        },
-        {
-            name: 'cheese',
-            name_jp: 'チーズ',
-            color: '#fffef6'
-        },
-        {
-            name: 'greentea',
-            name_jp: '抹茶',
-            color: '#c5c56a'
-        },
-        {
-            name: 'strawberry',
-            name_jp: 'いちご',
-            color: '#bc2328'
-        },
-        {
-            name: 'chocolate',
-            name_jp: 'チョコレート',
-            color: '#513311'
-        },
-    ],
-    straw: [
-        {
-            color: '#000',
-        },
-        {
-            color: '#fff',
-        },
-        {
-            color: '#ed6103'
-        },
-        {
-            color: '#AC3739'
         }
     ],
     drink: [
@@ -144,6 +98,42 @@ const material = {
             name: null,
             name_jp: 'なし',
             color: 'transparent'
+        }
+    ],
+    cream: [
+        {
+            name: 'milk',
+            name_jp: 'ミルククリーム',
+            color: '#fffef6'
+        },
+        {
+            name: 'cheese',
+            name_jp: 'チーズクリーム',
+            color: '#ffeecd'
+        },
+        {
+            name: 'chocolate-milk',
+            name_jp: 'チョコレートミルククリーム',
+            color: '#bb9a82'
+        },
+        {
+            name: null,
+            name_jp: 'なし',
+            color: 'transparent'
+        }
+    ],
+    straw: [
+        {
+            color: '#000',
+        },
+        {
+            color: '#fff',
+        },
+        {
+            color: '#ed6103'
+        },
+        {
+            color: '#AC3739'
         }
     ],
     mark: [

@@ -6,25 +6,20 @@ export const state = () => ({
         name_jp: '黒糖',
         color: '#684535'
     },
-    source: {
-        name: 'blacksugar',
-        name_jp: '黒糖',
-        color: '#684535'
-    },
     drink: {
         name: 'milktea',
         name_jp: 'ミルクティー',
         color: '#E2C1A3'
     },
     foam: {
-        name: 'milk',
-        name_jp: 'ミルクフォーム',
-        color: '#fffef6'
+        name: 'none',
+        name_jp: 'なし',
+        color: 'transparent'
     },
     cream: {
-        name: 'milk',
-        name_jp: 'ミルククリーム',
-        color: '#fffef6'
+        name: 'none',
+        name_jp: 'なし',
+        color: 'transparent'
     },
     mark: {},
     straw: {
@@ -78,9 +73,6 @@ export const getters = {
     getTapioca (state) {
         return state.tapioca
     },
-    getSource (state) {
-        return state.source
-    },
     getDrink (state) {
         return state.drink
     },
@@ -94,17 +86,30 @@ export const getters = {
         return state.straw
     },
     getName (state) {
-        let tapioca = ''
-        let source = ''
-        const foam = state.foam.name_jp
-        if(state.source.name) {
-            source = state.source.name_jp + 'ソース'
-        }
-        if(state.tapioca.name) {
-            tapioca = state.tapioca.name_jp + 'タピオカ'
-        }
+        const tapioca = state.tapioca.name_jp
         const drink = state.drink.name_jp
 
-        return tapioca + drink + 'with' + foam + source
+        let foam = state.foam.name_jp
+        let cream = state.cream.name_jp
+        let topping = ''
+        if (foam == 'なし') {
+            foam = ''
+        }
+        if (cream == 'なし') {
+            cream = ''
+        }
+        if (foam || cream) {
+            const arr = []
+            if(foam) {
+                arr.push(foam)
+            }
+            if(cream) {
+                arr.push(cream)
+            }
+            const to = arr.join('&')
+            topping = `with${to}`
+        }
+
+        return tapioca + drink + topping
     }
 }

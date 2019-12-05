@@ -6,7 +6,7 @@
 			<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0"/>
 			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.6"/>
 		</linearGradient>
-		<path fill="url(#SVGID_4_" d="M431.1,54.3c-0.7,2.7-7.8,3.1-15.8,0.9s-13.9-6.1-13.2-8.7c0.7-2.7,7.8-3.1,15.8-0.9S431.8,51.7,431.1,54.3z"
+		<path fill="url(#SVGID_4_)" d="M431.1,54.3c-0.7,2.7-7.8,3.1-15.8,0.9s-13.9-6.1-13.2-8.7c0.7-2.7,7.8-3.1,15.8-0.9S431.8,51.7,431.1,54.3z"
 			/>
 	</g>
 </template>

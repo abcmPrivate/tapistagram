@@ -28,7 +28,7 @@
                 <ellipse transform="matrix(0.3018 -0.9534 0.9534 0.3018 -93.3941 196.6526)" :fill="tapiocaColor" cx="87.6" cy="162.1" rx="8.7" ry="8.7"/>
         </g>
         <g id="cup">
-            <path fill="#CDBEB2" d="M108.8,203.7H31.3c-5.3,0-9.8-4-10.4-9.2L2.1,42.3c-0.4-3,0.6-6,2.5-8.2c2-2.3,4.9-3.5,7.9-3.5h115.1
+            <path :fill="base" d="M108.8,203.7H31.3c-5.3,0-9.8-4-10.4-9.2L2.1,42.3c-0.4-3,0.6-6,2.5-8.2c2-2.3,4.9-3.5,7.9-3.5h115.1
                 c3,0,5.9,1.3,7.9,3.5s2.9,5.2,2.6,8.2l-18.8,152.3C118.6,199.8,114.1,203.7,108.8,203.7z M12.5,40.5c-0.1,0-0.2,0-0.4,0.2
                 C11.9,40.8,12,41,12,41l18.9,152.3c0,0.2,0.2,0.4,0.5,0.4h77.5c0.2,0,0.4-0.2,0.5-0.4L128,41c0-0.1,0-0.2-0.1-0.4s-0.3-0.2-0.4-0.2
                 H12.5z"/>
@@ -67,23 +67,25 @@ export default {
         }
     },
     data() {
-        return {}
+        return {
+            base: '#684535'
+        }
     },
     computed: {
         tapiocaColor () {
-            return this.tapioca ? '#684535' : '#f1eae3'
+            return this.tapioca ? '#fff' : this.base
         },
         drinkColor () {
-            return this.drink ? '#E2C1A3' : '#CDBEB2'
+            return this.drink ? '#E2C1A3' : this.base
         },
         strawColor () {
-            return this.straw ? '#ac3739' : '#CDBEB2'
+            return this.straw ? '#ac3739' : this.base
         },
         foamColor () {
-            return this.foam ? '#ffeecd' : '#D7CBC1'
+            return this.foam ? '#ffeecd' : this.base
         },
         creamColor () {
-            return this.cream ? '#fffef6' : '#E1D8D1'
+            return this.cream ? '#fffef6' : this.base
         }
     },
     mounted () {},
