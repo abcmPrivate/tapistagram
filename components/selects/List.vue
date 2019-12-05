@@ -1,9 +1,9 @@
 <template>
-    <ul class="list">
+    <ul class="list" :class="{'is-selected': selected}">
         <li v-for="(part, index) in parts" :key="index" class="list-icon">
-            <label class="oshushi">
+            <label class="list-label">
                 <input type="radio" :name="category">
-                <span class="shake" :data-unit="part.name_jp" :style="bgcolor(part.color)" @click="changeParts(part)">
+                <span class="list-text" :data-unit="part.name_jp" :style="bgcolor(part.color)" @click="changeParts(part)">
                     {{ part.name_jp }}
                 </span>
             </label>
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-// import A from '@/components/...'
 export default {
     components: {},
     props: {
@@ -24,12 +23,19 @@ export default {
         parts: {
             type: Array,
             default: null
+        },
+        selected: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
         return {}
     },
     computed: {
+        showedCategory () {
+            const category = this.category
+        }
     },
     mounted () {},
     created () {},
@@ -50,17 +56,12 @@ export default {
 .list {
     display: flex;
     flex-wrap: wrap;
-    .shake {
-        // position: relative;
-        // background-color: #fff;
-        // border: 2px solid transparent;
-        // width: 100px;
-        // height: 100px;
-        // box-sizing: border-box;
-        // display: flex;
-        // align-items: center;
-        // justify-content: center;
-        // font-size: 1.2em;
+    transition: .2s;
+    display: none;
+    &.is-selected {
+        display: block;
+    }
+    &-text {
         &:hover {
             cursor: pointer;
             opacity: .8;
@@ -68,7 +69,7 @@ export default {
     }
     input {
         display: none;
-        &:checked + .shake {
+        &:checked + .list-text {
             border-color: #ed6103;
         }
     }

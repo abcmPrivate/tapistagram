@@ -16,12 +16,10 @@
             </div>
 
             <div class="partsSelect">
-                <Tab />
-                <div class="frame">
+                <Tab :material="material" />
+                <!-- <div class="frame">
                     <List :parts="material.tapioca" category="tapioca" />
-                </div>
-
-                <!-- <List v-for="(key, index) in material" :key="index" :parts="key" :category="index" /> -->
+                </div> -->
             </div>
         </div>
 
@@ -122,9 +120,6 @@ export default {
     mounted () {
     },
     created () {
-        // AColorPicker.from('.picker').on('change', (picker, color) => {
-        //     document.body.style.backgroundColor = color;
-        // });
     },
     methods: {
         generate () {

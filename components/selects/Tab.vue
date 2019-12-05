@@ -1,22 +1,33 @@
 <template>
-    <ul class="tapis">
-        {{ tapioca }}
-        <li @click="changeCategory('tapioca')" :class="{'is-selected': tapioca }"><TapiIcon :width="30" tapioca/></li>
-        <li @click="changeCategory('drink')" :class="{'is-selected': drink }"><TapiIcon :width="30" drink /></li>
-        <li @click="changeCategory('foam')" :class="{'is-selected': foam }"><TapiIcon :width="30" foam /></li>
-        <li @click="changeCategory('cream')" :class="{'is-selected': cream }"><TapiIcon :width="30" cream /></li>
-        <li @click="changeCategory('straw')" :class="{'is-selected': straw }"><TapiIcon :width="30" straw /></li>
-    </ul>
+    <div>
+        <ul class="tapis">
+            <li @click="changeCategory('tapioca')" :class="{'is-selected': tapioca }"><TapiIcon :width="30" tapioca/></li>
+            <li @click="changeCategory('drink')" :class="{'is-selected': drink }"><TapiIcon :width="30" drink /></li>
+            <li @click="changeCategory('foam')" :class="{'is-selected': foam }"><TapiIcon :width="30" foam /></li>
+            <li @click="changeCategory('cream')" :class="{'is-selected': cream }"><TapiIcon :width="30" cream /></li>
+            <li @click="changeCategory('straw')" :class="{'is-selected': straw }"><TapiIcon :width="30" straw /></li>
+        </ul>
+        <List :parts="material.tapioca" category="tapioca" :selected="tapioca" />
+        <List :parts="material.drink" category="tapioca" :selected="drink" />
+        <List :parts="material.foam" category="tapioca" :selected="foam" />
+        <List :parts="material.cream" category="tapioca" :selected="cream" />
+        <List :parts="material.straw" category="tapioca" :selected="straw" />
+    </div>
 </template>
 
 <script>
 // import A from '@/components/...'
 import { mapGetters } from 'vuex'
+import List from '@/components/selects/List'
 import TapiIcon from '@/components/common/TapiIcon'
 
 export default {
-    components: { TapiIcon },
+    components: { TapiIcon, List },
     props: {
+        material: {
+            type: Object,
+            default: null
+        }
     },
     data() {
         return {}
