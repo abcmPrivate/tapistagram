@@ -16,14 +16,7 @@
             </div>
 
             <div class="partsSelect">
-                <ul class="tapis">
-                    <li><TapiIcon width="30" tapioca/></li>
-                    <li><TapiIcon width="30" drink /></li>
-                    <li><TapiIcon width="30" foam /></li>
-                    <li><TapiIcon width="30" cream /></li>
-                    <li><TapiIcon width="30" straw /></li>
-                </ul>
-
+                <Tab />
                 <div class="frame">
                     <List :parts="material.tapioca" category="tapioca" />
                 </div>
@@ -66,6 +59,7 @@ import Foam from '@/components/parts/Foam'
 // etc-components
 import TapiIcon from '@/components/common/TapiIcon'
 import List from '@/components/selects/List'
+import Tab from '@/components/selects/Tab'
 
 // apis
 import material from '@/apis/material'
@@ -73,7 +67,7 @@ import material from '@/apis/material'
 export default {
     components: {
         Tapioca, Drink, CupFront, CupBack, Bg, Straw, Cream, Foam,
-        List, TapiIcon
+        List, TapiIcon, Tab
     },
     data() {
         return {
@@ -207,21 +201,7 @@ export default {
     }
     // flex: 1;
 }
-.tapis {
-    display: flex;
-    li {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        padding: 10px 0;
-        border-bottom: 5px solid $color-milktea;
-        background-color: lighten($color-milktea, 10%);
-        &.is-selected,
-        &:hover {
-            background-color: $color-milktea;
-        }
-    }
-}
+
 .valiations {
     display: flex;
     li {
