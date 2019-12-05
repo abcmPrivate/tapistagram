@@ -22,3 +22,12 @@ $breakpoints: ("sp": "screen and (max-width: 480px)",
         @content;
     }
 }
+
+@mixin tagHeading {
+    font-size: 1.4rem;
+    color: $color-tapioca;
+    &::before {
+        content: "#";
+        margin-right: 2px;
+    }
+}

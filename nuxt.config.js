@@ -13,7 +13,8 @@ export default {
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-            { rel: "stylesheet", href:"https://use.fontawesome.com/releases/v5.6.1/css/all.css"}
+            { rel: "stylesheet", href:"https://use.fontawesome.com/releases/v5.6.1/css/all.css"},
+            { rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap"}
         ],
     },
     /*

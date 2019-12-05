@@ -1,17 +1,20 @@
 <template>
-    <ul class="list" :class="{'is-selected': selected}">
-        <li v-for="(part, index) in parts" :key="index" class="list-icon">
-            <label class="list-label">
-                <input type="radio" :name="category">
-                <span class="list-text" :data-unit="part.name_jp" :style="bgcolor(part.color)" @click="changeParts(part)">
-                    {{ part.name_jp }}
-                </span>
-            </label>
-        </li>
-    </ul>
+    <div class="list-wrapper" :class="{'is-selected': showedCategory}">
+        <ul class="list">
+            <li v-for="(part, index) in parts" :key="index" class="list-icon">
+                <label class="list-label">
+                    <input type="radio" :name="category">
+                    <span class="list-text" :data-unit="part.name_jp" :style="bgcolor(part.color)" @click="changeParts(part)">
+                        {{ part.name_jp }}
+                    </span>
+                </label>
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     components: {},
     props: {
@@ -19,22 +22,20 @@ export default {
             type: String,
             default: ''
         },
-        /* part.name, part.name_jp, part.color */
         parts: {
             type: Array,
             default: null
         },
-        selected: {
-            type: Boolean,
-            default: false
-        }
     },
     data() {
         return {}
     },
     computed: {
+        ...mapGetters ({
+            isActiveCategory: 'tab/getIsActive'
+        }),
         showedCategory () {
-            const category = this.category
+            return this.category == this.isActiveCategory
         }
     },
     mounted () {},
@@ -53,15 +54,37 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.list {
-    display: flex;
-    flex-wrap: wrap;
+.list-wrapper {
+    border: 5px solid $color-milktea;
     transition: .2s;
     display: none;
+    padding: 10px;
+    overflow-x: scroll;
+    @include mq(sp) {
+        height: 110px;
+    }
     &.is-selected {
         display: block;
     }
+}
+.list {
+    display: flex;
+    overflow-x: scroll;
+    @include mq {
+        flex-wrap: wrap;
+    }
+    li {
+        flex: 0 0 80px;
+        min-width: 80px;
+        height: 80px;
+    }
     &-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 10px;
+        box-sizing: border-box;
         &:hover {
             cursor: pointer;
             opacity: .8;

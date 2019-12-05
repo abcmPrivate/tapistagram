@@ -1,6 +1,10 @@
 <template>
     <section class="sec-container">
         <div class="generator-container">
+            <div class="tapiocaName">
+                <p class="tapiocaName-tag">{{ tapiocaName }}</p>
+            </div>
+
             <div class="preview">
                 <svg ref="svgArea" viewBox="0 0 600 600">
                     <Bg :fill="bg" />
@@ -12,14 +16,13 @@
                     <Straw />
                     <CupFront />
                 </svg>
-                <p>{{ tapiocaName }}</p>
+                <div class="generate">
+                    <button class="generate-button" type="button" @click="generate"><i class="fas fa-check"></i></button>
+                </div>
             </div>
 
             <div class="partsSelect">
                 <Tab :material="material" />
-                <!-- <div class="frame">
-                    <List :parts="material.tapioca" category="tapioca" />
-                </div> -->
             </div>
         </div>
 
@@ -33,10 +36,6 @@
                 :show-swatches="pick.showSwatches"
                 class="mx-auto"
             ></v-color-picker>
-        </div>
-
-        <div class="generate">
-            <button class="generate-button" type="button" @click="generate">つくる</button>
         </div>
     </section>
 </template>
@@ -145,11 +144,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.tapiocaName {
+    &-tag {
+        @include tagHeading;
+    }
+}
+
 .sec-container {
     width: 100%;
-    max-width: 1080px;
+    max-width: 414px;
     margin: 0 auto;
-    padding: 50px 10px;
+    padding: 20px 10px;
     box-sizing: border-box;
     @include mq(sp) {
         padding: 20px 10px;
@@ -159,42 +165,41 @@ export default {
     width: 100%;
 
     display: flex;
-    justify-content: center;
+    // justify-content: center;
+    flex-direction: column;
     @include mq(sp) {
-        flex-direction: column;
     }
 }
+.heading {
+    @include tagHeading;
+}
 .preview {
-    width: 100%;
     max-width: 500px;
-    flex: 2;
+    position: relative;
 }
 .generate {
-    margin-top: 20px;
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
     &-button {
         display: block;
-        width: 100%;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
         box-sizing: border-box;
-        padding: 15px 10px;
-        font-size: 1.2rem;
-        border-radius: 20px;
+        font-size: 1.4rem;
         background-color: $color-accent;
         color: $color-white;
         font-weight: bold;
         text-align: center;
         text-decoration: none;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
         @include link {
             background-color: lighten($color-accent, 10%);
         }
     }
 }
 .partsSelect {
-    flex: 3;
-    margin-left: 20px;
-    @include mq(sp) {
-        margin: 10px 0 0 0;
-    }
-    // flex: 1;
 }
 
 .valiations {

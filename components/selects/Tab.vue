@@ -1,17 +1,17 @@
 <template>
     <div>
         <ul class="tapis">
-            <li @click="changeCategory('tapioca')" :class="{'is-selected': tapioca }"><TapiIcon :width="30" tapioca/></li>
-            <li @click="changeCategory('drink')" :class="{'is-selected': drink }"><TapiIcon :width="30" drink /></li>
-            <li @click="changeCategory('foam')" :class="{'is-selected': foam }"><TapiIcon :width="30" foam /></li>
-            <li @click="changeCategory('cream')" :class="{'is-selected': cream }"><TapiIcon :width="30" cream /></li>
-            <li @click="changeCategory('straw')" :class="{'is-selected': straw }"><TapiIcon :width="30" straw /></li>
+            <li @click="changeActiveCategory('tapioca')" :class="{'is-selected': isActiveCategory == 'tapioca'}"><TapiIcon :width="30" tapioca/></li>
+            <li @click="changeActiveCategory('drink')" :class="{'is-selected': isActiveCategory == 'drink'}"><TapiIcon :width="30" drink /></li>
+            <li @click="changeActiveCategory('foam')" :class="{'is-selected': isActiveCategory == 'foam'}"><TapiIcon :width="30" foam /></li>
+            <li @click="changeActiveCategory('cream')" :class="{'is-selected': isActiveCategory == 'cream'}"><TapiIcon :width="30" cream /></li>
+            <li @click="changeActiveCategory('straw')" :class="{'is-selected': isActiveCategory == 'straw'}"><TapiIcon :width="30" straw /></li>
         </ul>
-        <List :parts="material.tapioca" category="tapioca" :selected="tapioca" />
-        <List :parts="material.drink" category="tapioca" :selected="drink" />
-        <List :parts="material.foam" category="tapioca" :selected="foam" />
-        <List :parts="material.cream" category="tapioca" :selected="cream" />
-        <List :parts="material.straw" category="tapioca" :selected="straw" />
+        <List :parts="material.tapioca" category="tapioca" />
+        <List :parts="material.drink" category="drink" />
+        <List :parts="material.foam" category="foam" />
+        <List :parts="material.cream" category="cream" />
+        <List :parts="material.straw" category="straw" />
     </div>
 </template>
 
@@ -34,18 +34,17 @@ export default {
     },
     computed: {
         ...mapGetters ({
-            tapioca: 'tab/getTapioca',
-            drink: 'tab/getDrink',
-            foam: 'tab/getFoam',
-            cream: 'tab/getCream',
-            straw: 'tab/getStraw'
-        })
+            isActiveCategory: 'tab/getIsActive'
+        }),
     },
     mounted () {},
     created () {},
     methods: {
-        changeCategory (category) {
-            this.$store.commit('tab/changeView', category)
+        changeActiveCategory (category) {
+            this.$store.commit('tab/changeActiveCategory', category)
+        },
+        oshushi (category) {
+            return this.isActiveCategory == category
         }
     }
 }
@@ -58,7 +57,6 @@ export default {
         display: flex;
         justify-content: center;
         padding: 10px 0;
-        border-bottom: 5px solid $color-milktea;
         background-color: lighten($color-milktea, 10%);
         &.is-selected,
         &:hover {

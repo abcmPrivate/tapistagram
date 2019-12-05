@@ -15,26 +15,16 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  box-sizing: border-box;
+  font-size: 62.5% !important;
+  font-family: 'M PLUS 1p', sans-serif;
 }
-
 body {
-  background-color: #f1eae3;
-  font-size: 62.5%;
+  font-size: 100%;
+  background-color: $color-base !important;
 }
 ul, li {
   list-style: none;
-}
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
 }
 </style>
