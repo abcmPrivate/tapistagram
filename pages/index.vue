@@ -1,10 +1,6 @@
 <template>
     <section class="sec-container">
         <div class="generator-container">
-            <div class="tapiocaName">
-                <p class="tapiocaName-tag">{{ tapiocaName }}</p>
-            </div>
-
             <div class="preview">
                 <svg ref="svgArea" viewBox="0 0 600 600">
                     <Bg :fill="bg" />
@@ -17,7 +13,22 @@
                     <CupFront />
                 </svg>
                 <div class="generate">
-                    <button class="generate-button" type="button" @click="generate"><i class="fas fa-check"></i></button>
+                    <button class="generate-button" type="button" @click="changePicker"><i class="fas fa-fill-drip"></i></button>
+
+                    <div class="generate-picker" :class="{'is-selected': showPicker}">
+                        <div class="d-flex justify-center">
+                            <v-color-picker
+                                v-model="bg"
+                                :hide-canvas="pick.hideCanvas"
+                                :hide-inputs="pick.hideInputs"
+                                :hide-mode-switch="pick.hideModeSwitch"
+                                :mode.sync="pick.mode"
+                                :show-swatches="pick.showSwatches"
+                                class="mx-auto"
+                            ></v-color-picker>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -26,17 +37,9 @@
             </div>
         </div>
 
-        <div class="d-flex justify-center">
-            <v-color-picker
-                v-model="bg"
-                :hide-canvas="pick.hideCanvas"
-                :hide-inputs="pick.hideInputs"
-                :hide-mode-switch="pick.hideModeSwitch"
-                :mode.sync="pick.mode"
-                :show-swatches="pick.showSwatches"
-                class="mx-auto"
-            ></v-color-picker>
-        </div>
+        <p class="generateButton">
+            <button type="button" @click="generate"><i class="fas fa-check"></i>完成する</button>
+        </p>
     </section>
 </template>
 
@@ -70,12 +73,13 @@ export default {
         return {
             pick: {
                 color: '#8E00FF',
-                hideCanvas: false,
+                hideCanvas: true,
                 hideInputs: true,
                 hideModeSwitch: true,
                 mode: 'rgba',
-                modes: ['rgba', 'hsla', 'hexa'],
+                modes: ['rgba'],
                 showSwatches: true,
+                disabled: true
             },
             bg: '#9b7d66',
             custom: {
@@ -99,6 +103,7 @@ export default {
                     color: '#000'
                 }
             },
+            showPicker: false
         }
     },
     computed: {
@@ -138,6 +143,11 @@ export default {
         changeParts (part, category) {
             const payload = { category, part }
             this.$store.commit('tapioca/changeParts', payload)
+        },
+
+        changePicker () {
+            console.log('aaa')
+            this.showPicker = !this.showPicker
         }
     }
 }
@@ -153,9 +163,9 @@ export default {
 
 .sec-container {
     width: 100%;
-    max-width: 414px;
+    max-width: 640px;
     margin: 0 auto;
-    padding: 20px 10px;
+    padding: 50px 10px;
     box-sizing: border-box;
     @include mq(sp) {
         padding: 20px 10px;
@@ -163,19 +173,25 @@ export default {
 }
 .generator-container {
     width: 100%;
-
     display: flex;
-    // justify-content: center;
-    flex-direction: column;
+    justify-content: center;
     @include mq(sp) {
+        flex-direction: column;
     }
 }
 .heading {
     @include tagHeading;
 }
 .preview {
-    max-width: 500px;
+    flex: 1;
     position: relative;
+}
+.partsSelect {
+    flex: 1;
+    margin-left: 30px;
+    @include mq(sp) {
+        margin: 20px 0 0 0;
+    }
 }
 .generate {
     position: absolute;
@@ -198,41 +214,41 @@ export default {
             background-color: lighten($color-accent, 10%);
         }
     }
-}
-.partsSelect {
-}
-
-.valiations {
-    display: flex;
-    li {
-        &:not(:first-child) {
-            margin-left: 10px;
+    &-picker {
+        position: absolute;
+        visibility: hidden;
+        right: 10px;
+        bottom: 10px;
+        transition: .2s;
+        opacity: 0;
+        &.is-selected {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(-3px);
         }
     }
-    input {
-        display: none;
-        &:checked + span {
-            border: 2px solid $color-accent;
-        }
-    }
-    span {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 50px;
-        height: 50px;
-        background-color: #fff;
+}
+.generateButton {
+    margin-top: 20px;
+    button {
+        display: block;
+        width: 100%;
+        border-radius: 4px;
+        padding: 15px 10px;
         box-sizing: border-box;
-        transition: .15s;
-        &:hover {
-            transform: scale(1.1);
+        font-size: 1.4rem;
+        background-color: $color-accent;
+        color: $color-white;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+        @include link {
+            background-color: lighten($color-accent, 10%);
+        }
+        i {
+            margin-right: 5px;
         }
     }
-}
-
-.selec {
-    display: block;
-    background-color: #fff;
-    padding: 20px;
 }
 </style>

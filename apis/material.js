@@ -124,24 +124,32 @@ const material = {
     ],
     straw: [
         {
+            name: '赤',
+            name_jp: '赤',
+            color: '#AC3739'
+        },
+        {
+            name: '黒',
+            name_jp: '黒',
             color: '#000',
         },
         {
+            name: '白',
+            name_jp: '白',
             color: '#fff',
         },
         {
+            name: 'オレンジ',
+            name_jp: 'オレンジ',
             color: '#ed6103'
         },
-        {
-            color: '#AC3739'
-        }
     ],
-    mark: [
-        {
-            name: 'kongcha',
-            name_jp: 'こんちゃ',
-            color: '#'
-        }
-    ]
+    // mark: [
+    //     {
+    //         name: 'kongcha',
+    //         name_jp: 'こんちゃ',
+    //         color: '#'
+    //     }
+    // ]
 }
 export default material

@@ -1,28 +1,20 @@
 <template>
-    <div>
-        <ul class="tapis">
-            <li @click="changeActiveCategory('tapioca')" :class="{'is-selected': isActiveCategory == 'tapioca'}"><TapiIcon :width="30" tapioca/></li>
-            <li @click="changeActiveCategory('drink')" :class="{'is-selected': isActiveCategory == 'drink'}"><TapiIcon :width="30" drink /></li>
-            <li @click="changeActiveCategory('foam')" :class="{'is-selected': isActiveCategory == 'foam'}"><TapiIcon :width="30" foam /></li>
-            <li @click="changeActiveCategory('cream')" :class="{'is-selected': isActiveCategory == 'cream'}"><TapiIcon :width="30" cream /></li>
-            <li @click="changeActiveCategory('straw')" :class="{'is-selected': isActiveCategory == 'straw'}"><TapiIcon :width="30" straw /></li>
+        <ul class="materials">
+            <li v-for="(value, key) in material" :key="key">
+                <p class="materials-icon"><TapiIcon :material="key" /></p>
+                <p class="materials-select"><Select :category="key" :a="value" /></p>
+            </li>
         </ul>
-        <List :parts="material.tapioca" category="tapioca" />
-        <List :parts="material.drink" category="drink" />
-        <List :parts="material.foam" category="foam" />
-        <List :parts="material.cream" category="cream" />
-        <List :parts="material.straw" category="straw" />
-    </div>
 </template>
 
 <script>
 // import A from '@/components/...'
 import { mapGetters } from 'vuex'
-import List from '@/components/selects/List'
+import Select from '@/components/selects/Select'
 import TapiIcon from '@/components/common/TapiIcon'
 
 export default {
-    components: { TapiIcon, List },
+    components: { TapiIcon, Select },
     props: {
         material: {
             type: Object,
@@ -40,16 +32,33 @@ export default {
     mounted () {},
     created () {},
     methods: {
-        changeActiveCategory (category) {
-            this.$store.commit('tab/changeActiveCategory', category)
+        change (category) {
+            console.log(category)
         },
-        oshushi (category) {
-            return this.isActiveCategory == category
-        }
     }
 }
 </script>
 <style lang="scss" scoped>
+.materials {
+    > li {
+        &:not(:first-child) {
+            margin-top: 10px;
+        }
+        display: flex;
+
+    }
+    &-icon {
+        width: 20px;
+        display: flex;
+        align-items: center;
+    }
+    &-select {
+        flex: 1;
+        margin-left: 10px;
+    }
+}
+
+
 .tapis {
     display: flex;
     li {

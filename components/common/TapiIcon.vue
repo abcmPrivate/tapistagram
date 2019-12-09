@@ -45,26 +45,10 @@ export default {
             type: Number,
             default: 20
         },
-        tapioca: {
-            type: Boolean,
-            default: false,
+        material: {
+            type: String,
+            default: 'tapioca'
         },
-        drink :{
-            type: Boolean,
-            default: false
-        },
-        straw: {
-            type: Boolean,
-            default: false,
-        },
-        foam: {
-            type: Boolean,
-            default: false,
-        },
-        cream: {
-            type: Boolean,
-            default: false
-        }
     },
     data() {
         return {
@@ -73,19 +57,19 @@ export default {
     },
     computed: {
         tapiocaColor () {
-            return this.tapioca ? '#fff' : this.base
+            return this.material == 'tapioca' ? '#fff' : this.base
         },
         drinkColor () {
-            return this.drink ? '#E2C1A3' : this.base
+            return this.material == 'drink' ? '#E2C1A3' : this.base
         },
         strawColor () {
-            return this.straw ? '#ac3739' : this.base
+            return this.material == 'straw' ? '#ac3739' : this.base
         },
         foamColor () {
-            return this.foam ? '#ffeecd' : this.base
+            return this.material == 'foam' ? '#ffeecd' : this.base
         },
         creamColor () {
-            return this.cream ? '#fffef6' : this.base
+            return this.material == 'cream' ? '#fffef6' : this.base
         }
     },
     mounted () {},

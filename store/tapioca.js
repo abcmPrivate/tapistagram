@@ -1,30 +1,14 @@
 import Vue from 'vue'
 
+import material from '@/apis/material'
+
 export const state = () => ({
-    tapioca: {
-        name: 'blacksugar',
-        name_jp: '黒糖',
-        color: '#684535'
-    },
-    drink: {
-        name: 'milktea',
-        name_jp: 'ミルクティー',
-        color: '#E2C1A3'
-    },
-    foam: {
-        name: 'none',
-        name_jp: 'なし',
-        color: 'transparent'
-    },
-    cream: {
-        name: 'none',
-        name_jp: 'なし',
-        color: 'transparent'
-    },
+    tapioca: material.tapioca[0],
+    drink: material.drink[0],
+    foam: material.foam[0],
+    cream: material.cream[0],
     mark: {},
-    straw: {
-        color: '#ed6103'
-    }
+    straw: material.straw[0]
 })
 export const mutations = {
     changeParts (state, payload) {
