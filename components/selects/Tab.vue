@@ -54,7 +54,7 @@ export default {
     }
     &-select {
         flex: 1;
-        margin-left: 10px;
+        margin-left: 20px;
     }
 }
 

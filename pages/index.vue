@@ -15,7 +15,7 @@
                 <div class="generate">
                     <button class="generate-button" type="button" @click="changePicker"><i class="fas fa-fill-drip"></i></button>
 
-                    <div class="generate-picker" :class="{'is-selected': showPicker}">
+                    <div class="generate-picker" v-if="showPicker">
                         <div class="d-flex justify-center">
                             <v-color-picker
                                 v-model="bg"
@@ -40,11 +40,16 @@
         <p class="generateButton">
             <button type="button" @click="generate"><i class="fas fa-check"></i>完成する</button>
         </p>
+
+        <div class="generating" v-if="generating">
+            <p>now generate...</p>
+        </div>
     </section>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+const sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
 
 // parts-components
 import Bg from '@/components/parts/Bg'
@@ -103,21 +108,13 @@ export default {
                     color: '#000'
                 }
             },
-            showPicker: false
+            showPicker: false,
+            generating: false,
+            material: material
         }
     },
     computed: {
-        categories () {
-            const arr = []
-            for(let[key] of Object.entries(material)) {
-                arr.push(key)
-            }
-            return arr
-        },
-        material () {
-            return material;
-        },
-        ...mapGetters({
+        ...mapGetters ({
             tapiocaName: 'tapioca/getName'
         })
     },
@@ -126,7 +123,9 @@ export default {
     created () {
     },
     methods: {
-        generate () {
+        async generate () {
+            this.generating = true;
+            await sleep(2000)
             const refs = this.$refs.svgArea
             const name = this.tapiocaName
             this.$store.dispatch('generate/onGenerated', {
@@ -250,5 +249,7 @@ export default {
             margin-right: 5px;
         }
     }
+}
+.generating {
 }
 </style>
