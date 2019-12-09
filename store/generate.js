@@ -4,20 +4,29 @@ import canvg from 'canvg'
 import nanoid from 'nanoid'
 const db = firebase.firestore()
 const generated = db.collection('generated')
+
 export const state = () => ({
     id: '',
     generatedImageUrl: '',
-    name: ''
+    name: '',
+    generated: [],
 })
 
 export const mutations = {
+    ...vuexfireMutations,
     changeGeneratedImageUrl (state, payload) {
         state.generatedImageUrl = payload.imageUrl
         state.name = payload.name
-    }
+    },
 }
 
 export const actions = {
+    storeGenerated: firestoreAction(async ({ bindFirestoreRef }) => {
+        const data = await db.collection('generated').doc()
+        console.log(data)
+        bindFirestoreRef('generated', data)
+    }),
+
     /**
      * generateボタンが押された時のハンドラ
      * @param {*} param0 
@@ -116,5 +125,8 @@ export const getters = {
     },
     getName (state) {
         return state.name
+    },
+    getGenerated (state) {
+        return state.generated
     }
 }
