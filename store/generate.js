@@ -35,6 +35,8 @@ export const actions = {
     async onGenerated ({ dispatch }, payload) {
         const refs = payload.refs
         const name = payload.name
+
+        // 画像生成＆保存
         const image = await dispatch('createImage', refs)
         await dispatch('saveImage', { image, name })
     },
@@ -58,7 +60,7 @@ export const actions = {
     },
 
     /**
-     * 画像をfirestoreに保存するメソッド
+     * 画像をfirestore/storageに保存するメソッド
      * @param {*} param0 
      * @param {*} image 画像データ 
      */

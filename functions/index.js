@@ -12,8 +12,8 @@ const SITE_NAME = 'tapistagram'
 const TITLE = 'tapistagram'
 const META_DESCRIPTION = 'タピオカをつくるやつ'
 const META_KEYWORDS = ['タピオカ']
-const OG_IMAGE_WIDTH = 1200
-const OG_IMAGE_HEIGHZT = 630
+const OG_IMAGE_WIDTH = 500
+const OG_IMAGE_HEIGHZT = 500
 const FB_APPID = ''
 const TW_SITE = ''
 const TW_CREATOR = ''
@@ -38,7 +38,7 @@ const genHtml = (id, url, name) => `
     <meta property="fb:app_id" content=${FB_APPID}>
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content=${TITLE}>
-    <meta name="twitter:description" content=#${name}>
+    <meta name="twitter:description" content=${name}>
     <meta name="twitter:image" content=${url}>
     <meta name="twitter:site" content=${TW_SITE}>
     <meta name="twitter:creator" content=${TW_CREATOR}>
