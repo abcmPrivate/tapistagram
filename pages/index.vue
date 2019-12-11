@@ -48,6 +48,8 @@
                 <p class="generating-message">Now Generating...</p>
             </div>
         </div>
+
+        {{ everyone }}
     </section>
 </template>
 
@@ -120,7 +122,7 @@ export default {
     computed: {
         ...mapGetters ({
             tapiocaName: 'tapioca/getName',
-            generated: 'generate/getGenerated'
+            everyone: 'generate/getEveryone'
         })
     },
     mounted () {
