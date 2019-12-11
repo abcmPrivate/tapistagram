@@ -1,3 +1,5 @@
+import { join } from "path";
+
 const material = {
     tapioca: [
         {
@@ -13,7 +15,7 @@ const material = {
         {
             name: 'greentea',
             name_jp: '抹茶タピオカ',
-            color: '#c5c56a'
+            color: '#5b6e2c'
         },
         {
             name: 'strawberry',
@@ -129,19 +131,34 @@ const material = {
             color: '#AC3739'
         },
         {
+            name: 'オレンジ',
+            name_jp: 'オレンジ',
+            color: '#ed6103'
+        },
+        {
+            name: '黄',
+            name_jp: '黄',
+            color: '#f8af38'
+        },
+        {
+            name: '緑',
+            name_jp: '緑',
+            color: '#789e6c'
+        },
+        {
+            name: 'ピンク',
+            name_jp: 'ピンク',
+            color: '#e04982'
+        },
+        {
             name: '黒',
             name_jp: '黒',
-            color: '#000',
+            color: '#333',
         },
         {
             name: '白',
             name_jp: '白',
-            color: '#fff',
-        },
-        {
-            name: 'オレンジ',
-            name_jp: 'オレンジ',
-            color: '#ed6103'
+            color: '#eee',
         },
     ],
     // mark: [
