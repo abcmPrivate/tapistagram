@@ -14,7 +14,7 @@
     "@nuxtjs/axios": "^5.8.0",
     "canvas": "^2.6.0",
     "firebase": "^7.3.0",
-    "jsdom": "^13.2.0",
+    "jsdom": "^16.5.0",
     "nanoid": "^2.1.6",
     "nuxt": "^2.10.2",
     "vuexfire": "^3.2.0",
